@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ink: #10222f;
+  --bg: #f3f6f8;
+  --surface: #ffffff;
+  --line: #d5dee4;
+  --field: #6b8191; /* stronger border for inputs and secondary buttons (3:1 non-text contrast) */
+  --muted: #41586a;
+  --brand: #0f766e;
+  --brand-fg: #ffffff;
+  --brand-text: #0f766e;
+  --brand-soft: #e3f1ef;
+  --success: #15803d;
+  --success-soft: #edf7f0;
+  --warning: #b45309;
+  --warning-soft: #fff7ed;
+  --danger: #b42318;
+  --danger-soft: #fdecea;
+  --on-solid: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #e8eff3;
+    --bg: #0b151c;
+    --surface: #12212b;
+    --line: #2b3e4b;
+    --field: #70899a;
+    --muted: #9fb3c1;
+    --brand: #2dd4bf;
+    --brand-fg: #04211e;
+    --brand-text: #5eead4;
+    --brand-soft: #0f2f2d;
+    --success: #4ade80;
+    --success-soft: #10291a;
+    --warning: #fbbf24;
+    --warning-soft: #33240a;
+    --danger: #f87171;
+    --danger-soft: #3a1614;
+    --on-solid: #06131a;
+  }
+}
+
+@layer base {
+  html {
+    color-scheme: light dark;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    line-height: 1.5;
+  }
+  :focus-visible {
+    outline: 3px solid var(--brand-text);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  main:focus {
+    outline: none;
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-xl border border-line bg-surface;
+  }
+  .btn {
+    @apply inline-flex min-h-[44px] min-w-[44px] items-center justify-center gap-2 rounded-lg px-4 py-2 text-base font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-60;
+  }
+  .btn-primary {
+    @apply bg-brand text-brand-fg hover:brightness-90;
+  }
+  .btn-secondary {
+    @apply border border-field bg-surface text-ink hover:bg-brand-soft;
+  }
+  .btn-danger {
+    @apply bg-danger text-on-solid hover:brightness-90;
+  }
+  .btn-ghost {
+    @apply text-brand-text hover:bg-brand-soft;
+  }
+  .input {
+    @apply min-h-[44px] w-full rounded-lg border border-field bg-surface px-3 py-2 text-base text-ink placeholder:text-muted;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-sm font-medium;
+  }
+  .chip-pass {
+    @apply border-success bg-success-soft text-success;
+  }
+  .chip-fail {
+    @apply border-danger bg-danger-soft text-danger;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
